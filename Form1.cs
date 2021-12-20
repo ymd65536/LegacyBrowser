@@ -10,11 +10,14 @@ namespace WebForms
         private MyWebBrowser Browser;
         private WebForm frmWB;
 
-        public WebForm()
+        public WebForm(bool InitFlag = true)
         {
             Browser = new MyWebBrowser();
             Browser.ScriptErrorsSuppressed = true;
-            Browser.Navigate("https://www.google.com/?hl=ja");
+            if (InitFlag)
+            {
+                Browser.Navigate("https://www.google.com/?hl=ja");
+            }
             InitializeComponent();
 
             Browser.Dock = DockStyle.Fill;
@@ -35,7 +38,7 @@ namespace WebForms
             // プロパティを true にすると呼び出される。なので、
             // ここで設定しないと RegisterAsBrowser プロパティ、
             // Application プロパティで例外がスローされてしまう。
-            frmWB = new WebForm();
+            frmWB = new WebForm(false);
             frmWB.Visible = true;
             frmWB.Browser.ScriptErrorsSuppressed = true;
             frmWB.Browser.RegisterAsBrowser = true;
