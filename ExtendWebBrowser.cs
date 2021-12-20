@@ -1,21 +1,18 @@
 using System;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
-using System.Security;
-using System.Security.Permissions;
 
 namespace WebBrowserExtended
 {
   public class MyWebBrowser : WebBrowser
   {
     // WebBrowser の AxtiveX への参照
-    public delegate void ClosingEventHandler(object sender, EventArgs e);
+    public delegate void FormClosingEventHandler(object sender, EventArgs e);
 
     private IWebBrowser2 axIWebBrowser2;
-    public event ClosingEventHandler Closing;
+    public event FormClosingEventHandler Closing;
 
     // WebBrowser の AxtiveX が作成されたとき呼び出される
-    //[PermissionSet(SecurityAction.LinkDemand, Name = "FullTrust")]
     protected override void AttachInterfaces(object nativeActiveXObject)
     {
       this.axIWebBrowser2 =
@@ -23,7 +20,6 @@ namespace WebBrowserExtended
       base.AttachInterfaces(nativeActiveXObject);
     }
 
-    //[PermissionSet(SecurityAction.LinkDemand, Name = "FullTrust")]
     protected override void WndProc(ref Message m)
     {
       switch (m.Msg)
@@ -160,7 +156,6 @@ namespace WebBrowserExtended
     }
 
     // シンクのサブスクライブを解除
-    //[PermissionSetAttribute(SecurityAction.LinkDemand, Name = "FullTrust")]
     protected override void DetachSink()
     {
       if (cookie != null)
