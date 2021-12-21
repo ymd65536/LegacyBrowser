@@ -1,6 +1,6 @@
-﻿namespace WebForms
+﻿namespace LegacyWeb
 {
-  partial class WebForm
+  partial class LegacyBrowser
   {
     private System.ComponentModel.IContainer components = null;
 

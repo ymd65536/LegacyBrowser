@@ -1,7 +1,7 @@
 using System;
 using System.Windows.Forms;
 
-namespace WebForms
+namespace LegacyWeb
 {
   static class Program
   {
@@ -11,7 +11,7 @@ namespace WebForms
       Application.SetHighDpiMode(HighDpiMode.SystemAware);
       Application.EnableVisualStyles();
       Application.SetCompatibleTextRenderingDefault(false);
-      Application.Run(new WebForm());
+      Application.Run(new LegacyBrowser());
     }
   }
 }

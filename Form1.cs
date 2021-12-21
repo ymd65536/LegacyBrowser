@@ -7,17 +7,17 @@ using WebBrowserExtended;
 // フォームコントロール
 using System.Drawing;
 
-namespace WebForms
+namespace LegacyWeb
 {
-  public partial class WebForm : Form
+  public partial class LegacyBrowser : Form
   {
     private MyWebBrowser Browser;
-    private WebForm frmWB;
+    private LegacyBrowser frmWB;
     TextBox UrlField;
     Button BackBtn;
     Button ForwardBtn;
 
-    public WebForm(bool InitFlag = true)
+    public LegacyBrowser(bool InitFlag = true)
     {
       Browser = new MyWebBrowser();
       Browser.ScriptErrorsSuppressed = true;
@@ -61,7 +61,7 @@ namespace WebForms
       // イベントリスナの登録
       this.ForwardBtn.Click += ForwardBtn_Click;
       this.BackBtn.Click += BackBtn_Click;
-      this.SizeChanged += WebForm_SizeChanged;
+      this.SizeChanged += WebBrowserCtrl_SizeChanged;
       Browser.Navigated += Browser_Navigated;
       Browser.NewWindow2 += new NewWindow2EventHandler(Browser_NewWindow2);
       Browser.Closing += new MyWebBrowser.FormClosingEventHandler(OnQuit);
@@ -80,7 +80,7 @@ namespace WebForms
         Browser.GoBack();
       }
     }
-    private void WebForm_SizeChanged(object sender, EventArgs e)
+    private void WebBrowserCtrl_SizeChanged(object sender, EventArgs e)
     {
       Browser.ClientSize = new Size(this.ClientSize.Width - 20, this.Height - 60);
       UrlField.ClientSize = new Size(this.ClientSize.Width - 200, 30);
@@ -102,7 +102,7 @@ namespace WebForms
       // プロパティを true にすると呼び出される。なので、
       // ここで設定しないと RegisterAsBrowser プロパティ、
       // Application プロパティで例外がスローされてしまう。
-      frmWB = new WebForm(false);
+      frmWB = new LegacyBrowser(false);
       frmWB.Visible = true;
       frmWB.Browser.ScriptErrorsSuppressed = true;
       frmWB.Browser.RegisterAsBrowser = true;
