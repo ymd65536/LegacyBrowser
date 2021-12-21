@@ -69,7 +69,7 @@ namespace LegacyWeb
       // イベントリスナの登録
       this.ForwardBtn.Click += ForwardBtn_Click;
       this.BackBtn.Click += BackBtn_Click;
-      this.SizeChanged += WebBrowserCtrl_SizeChanged;
+      this.SizeChanged += Browser_SizeChanged;
       Browser.Navigated += Browser_Navigated;
       Browser.NewWindow2 += new NewWindow2EventHandler(Browser_NewWindow2);
       Browser.Closing += new MyWebBrowser.FormClosingEventHandler(OnQuit);
@@ -88,7 +88,7 @@ namespace LegacyWeb
         Browser.GoBack();
       }
     }
-    private void WebBrowserCtrl_SizeChanged(object sender, EventArgs e)
+    private void Browser_SizeChanged(object sender, EventArgs e)
     {
       Browser.ClientSize = new Size(this.ClientSize.Width - 20, this.Height - 60);
       UrlField.ClientSize = new Size(this.ClientSize.Width - 200, 30);
