@@ -33,7 +33,6 @@ namespace WebForms
       string HomePage = CurDir + "\\" + "config\\homepage.txt";
 
       StreamReader HomePageSr = new StreamReader(HomePage, Encoding.GetEncoding("UTF-8"));
-
       string HomePageUrl = HomePageSr.ReadToEnd();
 
       if (InitFlag)
