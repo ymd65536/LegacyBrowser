@@ -21,6 +21,7 @@ namespace LegacyWeb
     {
       Browser = new MyWebBrowser();
       Browser.ScriptErrorsSuppressed = true;
+      Browser.WebBrowserShortcutsEnabled = true;
       InitializeComponent();
       //Browser.Dock = DockStyle.Fill;
       Browser.ClientSize = new Size(980, 440);
