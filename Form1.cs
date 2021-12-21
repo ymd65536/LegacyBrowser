@@ -14,7 +14,7 @@ namespace LegacyWeb
     TextBox UrlField;
     Button BackBtn;
     Button ForwardBtn;
-    Button GoUrl;
+    Button GoUrlBtn;
     Button HomeBtn;
 
     public LegacyBrowser(bool InitFlag = true)
@@ -40,15 +40,15 @@ namespace LegacyWeb
       UrlField.ClientSize = new Size(750, 30);
       UrlField.Location = new Point(ForwardBtn.Width + ForwardBtn.Location.X + 5, 15);
 
-      GoUrl = new Button();
-      GoUrl.ClientSize = new Size(50, 30);
-      GoUrl.Text = "Go";
-      GoUrl.Location = new Point(UrlField.Width + UrlField.Location.X + 5, 10);
+      GoUrlBtn = new Button();
+      GoUrlBtn.ClientSize = new Size(50, 30);
+      GoUrlBtn.Text = "Go";
+      GoUrlBtn.Location = new Point(UrlField.Width + UrlField.Location.X + 5, 10);
 
       HomeBtn = new Button();
       HomeBtn.ClientSize = new Size(50, 30);
       HomeBtn.Text = "Home";
-      HomeBtn.Location = new Point(GoUrl.Width + GoUrl.Location.X + 5, 10);
+      HomeBtn.Location = new Point(GoUrlBtn.Width + GoUrlBtn.Location.X + 5, 10);
 
       // Configを取得
       if (InitFlag)
@@ -59,14 +59,14 @@ namespace LegacyWeb
       this.Controls.Add(BackBtn);
       this.Controls.Add(ForwardBtn);
       this.Controls.Add(UrlField);
-      this.Controls.Add(GoUrl);
+      this.Controls.Add(GoUrlBtn);
       this.Controls.Add(HomeBtn);
       this.Controls.Add(Browser);
 
       // イベントリスナの登録
       this.ForwardBtn.Click += ForwardBtn_Click;
       this.BackBtn.Click += BackBtn_Click;
-      this.GoUrl.Click += UrlGo_Click;
+      this.GoUrlBtn.Click += UrlGo_Click;
       this.SizeChanged += Browser_SizeChanged;
       Browser.Navigated += Browser_Navigated;
       Browser.NewWindow2 += new NewWindow2EventHandler(Browser_NewWindow2);
@@ -94,8 +94,8 @@ namespace LegacyWeb
     {
       Browser.ClientSize = new Size(this.ClientSize.Width - 20, this.Height - 60);
       UrlField.ClientSize = new Size(this.ClientSize.Width - 250, 30);
-      GoUrl.Location = new Point(UrlField.Width + UrlField.Location.X + 5, 10);
-      HomeBtn.Location = new Point(GoUrl.Width + GoUrl.Location.X + 5, 10);
+      GoUrlBtn.Location = new Point(UrlField.Width + UrlField.Location.X + 5, 10);
+      HomeBtn.Location = new Point(GoUrlBtn.Width + GoUrlBtn.Location.X + 5, 10);
     }
     private void OnQuit(object sender, EventArgs e)
     {
