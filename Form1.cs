@@ -14,6 +14,7 @@ namespace WebForms
     private MyWebBrowser Browser;
     private WebForm frmWB;
     TextBox UrlField;
+    Button BackBtn;
 
     public WebForm(bool InitFlag = true)
     {
@@ -21,12 +22,17 @@ namespace WebForms
       Browser.ScriptErrorsSuppressed = true;
       InitializeComponent();
       //Browser.Dock = DockStyle.Fill;
-      Browser.ClientSize = new Size(780, 440);
+      Browser.ClientSize = new Size(980, 440);
       Browser.Location = new Point(10, 50);
 
       UrlField = new TextBox();
-      UrlField.ClientSize = new Size(780, 30);
-      UrlField.Location = new Point(10, 10);
+      UrlField.ClientSize = new Size(820, 30);
+      UrlField.Location = new Point(150, 10);
+
+      BackBtn = new Button();
+      BackBtn.Text = "戻る";
+      BackBtn.ClientSize = new Size(50, 30);
+      BackBtn.Location = new Point(10, 10);
 
       // Configを取得
       string CurDir = Environment.CurrentDirectory.ToString();
@@ -41,6 +47,7 @@ namespace WebForms
         //Browser.Navigate(HomePageUrl);
         Browser.GoHome();
       }
+      this.Controls.Add(BackBtn);
       this.Controls.Add(UrlField);
       this.Controls.Add(Browser);
       this.SizeChanged += WebForm_SizeChanged;
