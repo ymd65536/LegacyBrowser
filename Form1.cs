@@ -17,6 +17,8 @@ namespace LegacyWeb
     Button BackBtn;
     Button ForwardBtn;
 
+    Button HomeBtn;
+
     public LegacyBrowser(bool InitFlag = true)
     {
       Browser = new MyWebBrowser();
@@ -40,6 +42,11 @@ namespace LegacyWeb
       UrlField.ClientSize = new Size(800, 30);
       UrlField.Location = new Point(ForwardBtn.Width + ForwardBtn.Location.X + 5, 15);
 
+      HomeBtn = new Button();
+      HomeBtn.ClientSize = new Size(50, 30);
+      HomeBtn.Text = "Home";
+      HomeBtn.Location = new Point(UrlField.Width + UrlField.Location.X + 5, 10);
+
       // Configを取得
       string CurDir = Environment.CurrentDirectory.ToString();
       string HomePage = CurDir + "\\" + "config\\homepage.txt";
@@ -56,6 +63,7 @@ namespace LegacyWeb
       this.Controls.Add(BackBtn);
       this.Controls.Add(ForwardBtn);
       this.Controls.Add(UrlField);
+      this.Controls.Add(HomeBtn);
       this.Controls.Add(Browser);
 
       // イベントリスナの登録
@@ -84,6 +92,7 @@ namespace LegacyWeb
     {
       Browser.ClientSize = new Size(this.ClientSize.Width - 20, this.Height - 60);
       UrlField.ClientSize = new Size(this.ClientSize.Width - 200, 30);
+      HomeBtn.Location = new Point(UrlField.Width + UrlField.Location.X + 5, 10);
     }
     private void OnQuit(object sender, EventArgs e)
     {
