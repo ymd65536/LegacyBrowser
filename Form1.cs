@@ -65,18 +65,18 @@ namespace LegacyWeb
       Browser.NewWindow2 += new NewWindow2EventHandler(Browser_NewWindow2);
       Browser.Closing += new MyWebBrowser.FormClosingEventHandler(OnQuit);
     }
-    private void ForwardBtn_Click(object sender, EventArgs e)
-    {
-      if (Browser.CanGoForward)
-      {
-        Browser.GoForward();
-      }
-    }
     private void BackBtn_Click(object sender, EventArgs e)
     {
       if (Browser.CanGoBack)
       {
         Browser.GoBack();
+      }
+    }
+    private void ForwardBtn_Click(object sender, EventArgs e)
+    {
+      if (Browser.CanGoForward)
+      {
+        Browser.GoForward();
       }
     }
     private void Browser_SizeChanged(object sender, EventArgs e)
