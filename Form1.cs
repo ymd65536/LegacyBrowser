@@ -13,6 +13,7 @@ namespace WebForms
   {
     private MyWebBrowser Browser;
     private WebForm frmWB;
+    TextBox UrlField;
 
     public WebForm(bool InitFlag = true)
     {
@@ -23,7 +24,7 @@ namespace WebForms
       Browser.ClientSize = new Size(780, 440);
       Browser.Location = new Point(10, 50);
 
-      TextBox UrlField = new TextBox();
+      UrlField = new TextBox();
       UrlField.ClientSize = new Size(780, 30);
       UrlField.Location = new Point(10, 10);
 
@@ -39,11 +40,17 @@ namespace WebForms
       {
         Browser.Navigate(HomePageUrl);
       }
-
       this.Controls.Add(UrlField);
       this.Controls.Add(Browser);
+      // /this.UrlField.Click += UrlField_Click;
+      this.SizeChanged += WebForm_SizeChanged;
       Browser.NewWindow2 += new NewWindow2EventHandler(Browser_NewWindow2);
       Browser.Closing += new MyWebBrowser.FormClosingEventHandler(OnQuit);
+    }
+
+    private void WebForm_SizeChanged(object sender, EventArgs e)
+    {
+      this.Browser.ClientSize = new Size(this.ClientSize.Width - 20, this.Height - 60);
     }
     private void OnQuit(object sender, EventArgs e)
     {
