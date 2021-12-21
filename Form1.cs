@@ -67,6 +67,7 @@ namespace LegacyWeb
       this.ForwardBtn.Click += ForwardBtn_Click;
       this.BackBtn.Click += BackBtn_Click;
       this.GoUrlBtn.Click += UrlGo_Click;
+      this.HomeBtn.Click += HomeBtn_Click;
       this.SizeChanged += Browser_SizeChanged;
       Browser.Navigated += Browser_Navigated;
       Browser.NewWindow2 += new NewWindow2EventHandler(Browser_NewWindow2);
@@ -89,6 +90,10 @@ namespace LegacyWeb
     private void UrlGo_Click(object sender, EventArgs e)
     {
       Browser.Navigate(UrlField.Text.ToString());
+    }
+    private void HomeBtn_Click(object sender, EventArgs e)
+    {
+      Browser.GoHome();
     }
     private void Browser_SizeChanged(object sender, EventArgs e)
     {
