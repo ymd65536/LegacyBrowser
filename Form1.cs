@@ -37,7 +37,7 @@ namespace WebForms
       ForwardBtn.Location = new Point(BackBtn.Width + BackBtn.Location.X + 5, 10);
 
       UrlField = new TextBox();
-      UrlField.ClientSize = new Size(820, 30);
+      UrlField.ClientSize = new Size(800, 30);
       UrlField.Location = new Point(ForwardBtn.Width + ForwardBtn.Location.X + 5, 15);
 
       // Configを取得
@@ -64,7 +64,8 @@ namespace WebForms
     }
     private void WebForm_SizeChanged(object sender, EventArgs e)
     {
-      this.Browser.ClientSize = new Size(this.ClientSize.Width - 20, this.Height - 60);
+      Browser.ClientSize = new Size(this.ClientSize.Width - 20, this.Height - 60);
+      UrlField.ClientSize = new Size(this.ClientSize.Width - 200, 30);
     }
     private void OnQuit(object sender, EventArgs e)
     {
@@ -75,6 +76,7 @@ namespace WebForms
     private void Browser_Navigated(object sender, WebBrowserNavigatedEventArgs e)
     {
       UrlField.Text = this.Browser.Url.ToString();
+      this.Text = this.Browser.Document.Title.ToString();
     }
     private void Browser_NewWindow2(object sender, NewWindow2EventArgs e)
     {
