@@ -58,6 +58,7 @@ namespace WebForms
       this.Controls.Add(UrlField);
       this.Controls.Add(Browser);
       this.SizeChanged += WebForm_SizeChanged;
+      Browser.Navigated += Browser_Navigated;
       Browser.NewWindow2 += new NewWindow2EventHandler(Browser_NewWindow2);
       Browser.Closing += new MyWebBrowser.FormClosingEventHandler(OnQuit);
     }
@@ -70,6 +71,10 @@ namespace WebForms
       this.Browser.Dispose();
       Browser = null;
       this.Close();
+    }
+    private void Browser_Navigated(object sender, WebBrowserNavigatedEventArgs e)
+    {
+      UrlField.Text = this.Browser.Url.ToString();
     }
     private void Browser_NewWindow2(object sender, NewWindow2EventArgs e)
     {
