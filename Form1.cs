@@ -38,23 +38,22 @@ namespace WebForms
 
       if (InitFlag)
       {
-        Browser.Navigate(HomePageUrl);
+        // GoHome とするとPCに登録されているホームページを見に行く
+        //Browser.Navigate(HomePageUrl);
+        Browser.GoHome();
       }
       this.Controls.Add(UrlField);
       this.Controls.Add(Browser);
-      // /this.UrlField.Click += UrlField_Click;
       this.SizeChanged += WebForm_SizeChanged;
       Browser.NewWindow2 += new NewWindow2EventHandler(Browser_NewWindow2);
       Browser.Closing += new MyWebBrowser.FormClosingEventHandler(OnQuit);
     }
-
     private void WebForm_SizeChanged(object sender, EventArgs e)
     {
       this.Browser.ClientSize = new Size(this.ClientSize.Width - 20, this.Height - 60);
     }
     private void OnQuit(object sender, EventArgs e)
     {
-      this.Browser.RegisterAsBrowser = false;
       this.Browser.Dispose();
       Browser = null;
       this.Close();
