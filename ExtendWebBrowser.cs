@@ -8,9 +8,9 @@ namespace WebBrowserExtended
   {
     // WebBrowser の AxtiveX への参照
     public delegate void FormClosingEventHandler(object sender, EventArgs e);
-
-    private IWebBrowser2 axIWebBrowser2;
     public event FormClosingEventHandler Closing;
+    private IWebBrowser2 axIWebBrowser2;
+
 
     // WebBrowser の AxtiveX が作成されたとき呼び出される
     protected override void AttachInterfaces(object nativeActiveXObject)
@@ -170,8 +170,7 @@ namespace WebBrowserExtended
     public event NewWindow2EventHandler NewWindow2;
 
     // .NET 側の NewWindow2 イベントを発動するメソッド
-    protected virtual void
-      OnNewWindow2(NewWindow2EventArgs e)
+    protected virtual void OnNewWindow2(NewWindow2EventArgs e)
     {
       if ((this.NewWindow2 != null))
       {
