@@ -98,7 +98,7 @@ namespace LegacyWeb
     }
     private void Browser_SizeChanged(object sender, EventArgs e)
     {
-      Browser.ClientSize = new Size(this.ClientSize.Width - 20, this.Height - 60);
+      Browser.ClientSize = new Size(this.ClientSize.Width - 20, this.Height - 100);
       UrlField.ClientSize = new Size(this.ClientSize.Width - 250, 30);
       GoUrlBtn.Location = new Point(UrlField.Width + UrlField.Location.X + 5, 10);
       HomeBtn.Location = new Point(GoUrlBtn.Width + GoUrlBtn.Location.X + 5, 10);
@@ -113,6 +113,12 @@ namespace LegacyWeb
     {
       UrlField.Text = this.Browser.Url.ToString();
       this.Text = this.Browser.Document.Title.ToString();
+      /*
+      // meta タグ挿入による互換表示の変更はできない。
+      var meta = Browser.Document.GetElementsByTagName("head")[0].Document.CreateElement("meta");
+      meta.SetAttribute("http-equiv", "X-UA-Compatible");
+      meta.SetAttribute("content", "\"IE=edge\"");
+      */
     }
     private void Browser_NewWindow2(object sender, NewWindow2EventArgs e)
     {
