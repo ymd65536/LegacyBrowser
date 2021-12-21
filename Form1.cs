@@ -48,16 +48,9 @@ namespace LegacyWeb
       HomeBtn.Location = new Point(UrlField.Width + UrlField.Location.X + 5, 10);
 
       // Configを取得
-      string CurDir = Environment.CurrentDirectory.ToString();
-      string HomePage = CurDir + "\\" + "config\\homepage.txt";
-
-      StreamReader HomePageSr = new StreamReader(HomePage, Encoding.GetEncoding("UTF-8"));
-      string HomePageUrl = HomePageSr.ReadToEnd();
-
       if (InitFlag)
       {
         // GoHome とするとPCに登録されているホームページを見に行く
-        //Browser.Navigate(HomePageUrl);
         Browser.GoHome();
       }
       this.Controls.Add(BackBtn);
