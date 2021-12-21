@@ -57,10 +57,20 @@ namespace WebForms
       this.Controls.Add(ForwardBtn);
       this.Controls.Add(UrlField);
       this.Controls.Add(Browser);
+
+      // イベントリスナの登録
+      this.BackBtn.Click += BackBtn_Click;
       this.SizeChanged += WebForm_SizeChanged;
       Browser.Navigated += Browser_Navigated;
       Browser.NewWindow2 += new NewWindow2EventHandler(Browser_NewWindow2);
       Browser.Closing += new MyWebBrowser.FormClosingEventHandler(OnQuit);
+    }
+    private void BackBtn_Click(object sender, EventArgs e)
+    {
+      if (Browser.CanGoBack)
+      {
+        Browser.GoBack();
+      }
     }
     private void WebForm_SizeChanged(object sender, EventArgs e)
     {
