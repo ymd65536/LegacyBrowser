@@ -17,6 +17,9 @@ namespace LegacyWeb
     Button GoUrlBtn;
     Button HomeBtn;
 
+    StatusStrip StatusBar;
+    ToolStripStatusLabel StatusLabel;
+
     public LegacyBrowser(bool InitFlag = true)
     {
       Browser = new MyWebBrowser();
@@ -24,7 +27,7 @@ namespace LegacyWeb
       Browser.WebBrowserShortcutsEnabled = true;
       InitializeComponent();
       //Browser.Dock = DockStyle.Fill;
-      Browser.ClientSize = new Size(980, 440);
+      Browser.ClientSize = new Size(980, 420);
       Browser.Location = new Point(10, 50);
 
       BackBtn = new Button();
@@ -51,6 +54,12 @@ namespace LegacyWeb
       HomeBtn.Text = "Home";
       HomeBtn.Location = new Point(GoUrlBtn.Width + GoUrlBtn.Location.X + 5, 10);
 
+      // ステータスバー
+      StatusBar = new StatusStrip();
+      StatusLabel = new ToolStripStatusLabel();
+      StatusLabel.Text = "起動中";
+      StatusBar.Items.Add(StatusLabel);
+
       // Configを取得
       if (InitFlag)
       {
@@ -63,6 +72,7 @@ namespace LegacyWeb
       this.Controls.Add(GoUrlBtn);
       this.Controls.Add(HomeBtn);
       this.Controls.Add(Browser);
+      this.Controls.Add(StatusBar);
 
       // イベントリスナの登録
       this.ForwardBtn.Click += ForwardBtn_Click;
@@ -80,6 +90,8 @@ namespace LegacyWeb
       if (Browser.CanGoBack)
       {
         Browser.GoBack();
+        StatusLabel.Text = "Back";
+        StatusBar.Items.Add(StatusLabel);
       }
     }
     private void ForwardBtn_Click(object sender, EventArgs e)
@@ -87,26 +99,34 @@ namespace LegacyWeb
       if (Browser.CanGoForward)
       {
         Browser.GoForward();
+        StatusLabel.Text = "Forward";
+        StatusBar.Items.Add(StatusLabel);
       }
     }
     private void GoUrlBtn_Click(object sender, EventArgs e)
     {
       Browser.Navigate(UrlField.Text.ToString());
+      StatusLabel.Text = "Go";
+      StatusBar.Items.Add(StatusLabel);
     }
     private void HomeBtn_Click(object sender, EventArgs e)
     {
       Browser.GoHome();
+      StatusLabel.Text = "Home";
+      StatusBar.Items.Add(StatusLabel);
     }
     private void UrlField_KeyDown(object sender, KeyEventArgs e)
     {
       if (e.KeyData == Keys.Return)
       {
         Browser.Navigate(UrlField.Text.ToString());
+        StatusLabel.Text = "Enter";
+        StatusBar.Items.Add(StatusLabel);
       }
     }
     private void Browser_SizeChanged(object sender, EventArgs e)
     {
-      Browser.ClientSize = new Size(this.ClientSize.Width - 20, this.Height - 100);
+      Browser.ClientSize = new Size(this.ClientSize.Width - 20, this.Height - 120);
       UrlField.ClientSize = new Size(this.ClientSize.Width - 250, 30);
       GoUrlBtn.Location = new Point(UrlField.Width + UrlField.Location.X + 5, 10);
       HomeBtn.Location = new Point(GoUrlBtn.Width + GoUrlBtn.Location.X + 5, 10);
@@ -121,6 +141,8 @@ namespace LegacyWeb
     {
       UrlField.Text = this.Browser.Url.ToString();
       this.Text = this.Browser.Document.Title.ToString();
+      StatusLabel.Text = "Complete";
+      StatusBar.Items.Add(StatusLabel);
       /*
       // meta タグ挿入による互換表示の変更はできない。
       var meta = Browser.Document.GetElementsByTagName("head")[0].Document.CreateElement("meta");
