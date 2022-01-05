@@ -82,6 +82,7 @@ namespace LegacyWeb
       this.UrlField.KeyDown += UrlField_KeyDown;
       this.SizeChanged += Browser_SizeChanged;
       Browser.Navigated += Browser_Navigated;
+      Browser.Navigating += Browser_Navigating;
       Browser.NewWindow2 += new NewWindow2EventHandler(Browser_NewWindow2);
       Browser.Closing += new MyWebBrowser.FormClosingEventHandler(OnQuit);
     }
@@ -149,6 +150,11 @@ namespace LegacyWeb
       meta.SetAttribute("http-equiv", "X-UA-Compatible");
       meta.SetAttribute("content", "\"IE=edge\"");
       */
+    }
+    private void Browser_Navigating(object sender, WebBrowserNavigatingEventArgs e)
+    {
+      StatusLabel.Text = "Navigating";
+      StatusBar.Items.Add(StatusLabel);
     }
     private void Browser_NewWindow2(object sender, NewWindow2EventArgs e)
     {
